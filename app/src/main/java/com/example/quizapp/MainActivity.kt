@@ -1,6 +1,8 @@
 package com.example.quizapp
 
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_FULLSCREEN
-
         StartButton.setOnClickListener {
             Log.d("Click","Button is Clicked")
             if(PlayerName.text.toString().isEmpty()){
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 val intent=Intent(this,QuizQuestionActivity::class.java)
+                intent.putExtra(Constants.USER_NAME,PlayerName.text.toString())
                 startActivity(intent)
                 finish()
             }
